@@ -1,8 +1,8 @@
 {
-    "name": "knockout-clear",
+    "name": "knockout.clear",
     "version": "0.1.0",
     "description": "Minimal utilities to make it easy to get KnockoutJS to clear up garbage automatically",
-    "main": "lib/knockout-clear.js",
+    "main": "lib/knockout.clear.js",
     "dependencies": {},
     "devDependencies": {
         "grunt": "^0.4.5"
@@ -13,12 +13,12 @@
     },
     "repository": {
     "type": "git",
-    "url": "http://github.com/danielearwicker/knockout-clear.git"
+    "url": "http://github.com/danielearwicker/knockout.clear.git"
     },
     "author": "Daniel Earwicker <dan@earwicker.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/danielearwicker/knockout-clear/issues"
+        "url": "https://github.com/danielearwicker/knockout.clear/issues"
     },
-    "homepage": "https://github.com/danielearwicker/knockout-clear"
+    "homepage": "https://github.com/danielearwicker/knockout.clear"
 }
