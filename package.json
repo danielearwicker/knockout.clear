@@ -8,7 +8,7 @@
         "grunt": "^0.4.5"
     },
     "scripts": {
-        "prepublish": "grunt",
+        "prepublish": "bower install && grunt",
         "test": "node spec/runner.node.js"
     },
     "repository": {
