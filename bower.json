@@ -1,0 +1,23 @@
+{
+  "name": "knockout-clear",
+  "version": "0.1.0",
+  "homepage": "https://github.com/danielearwicker/knockout-clear",
+  "authors": [
+    "Daniel Earwicker <dan@earwicker.com>"
+  ],
+  "description": "Minimal utilities to make it easy to get KnockoutJS to clear up garbage automatically",
+  "main": "lib/knockout-clear.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "knockout"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ]
+}
