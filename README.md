@@ -139,3 +139,7 @@ That will run the command-line tests. There is a further minor test for the `exe
     spec/runner.html
 
 Note that all the Knockout 3.3 tests will also run! This is important because `knockout.clear` patches and wraps a couple of things (see the source for details).
+
+## Acknowledgements
+
+Many thanks to [Michael Best](https://github.com/mbest) for invaluable pointers.
