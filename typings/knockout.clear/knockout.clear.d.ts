@@ -4,6 +4,10 @@ interface KnockoutExecuteExtendable {
     extend(requestedExtenders: { [key: string]: any; }): KnockoutExecuteExtendable;
 }
 
+interface KnockoutExecuteThenable<T> {
+    then(done: (result: T) => void): any;
+}
+
 interface KnockoutStatic {
     isPureComputed(obs: any): boolean;
 
@@ -13,7 +17,7 @@ interface KnockoutStatic {
         thisObj?: any): KnockoutExecuteExtendable;
 
     unpromise<T>(
-        evaluatorFunction: () => T | ({ then(done: (result: T) => void): any }),
+        evaluatorFunction: () => T | KnockoutExecuteThenable<T>,
         options?: {
             initialValue?: T;
             errorValue?: T;
