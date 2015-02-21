@@ -3,7 +3,7 @@
 
 ## Motivation
 
-* Introductory blog post
+* [Introductory blog post](https://smellegantcode.wordpress.com/2015/02/21/knockout-clear-fully-automatic-cleanup-in-knockoutjs-3-3/)
 * [Initial discussion](https://groups.google.com/d/msg/knockoutjs/uYCyGs2hb2k/Y_5sd9rLRXcJ)
 
 In brief, with the introduction of `ko.pureComputed` it should not be necessary to manually dispose of anything in Knockout:
@@ -25,6 +25,10 @@ All you need is:
 * The single file  [lib/knockout.clear.js](https://github.com/danielearwicker/knockout.clear/blob/master/lib/knockout.clear.js) from the knockout.clear repository.
 
 The other stuff in the repository is mostly unit tests.
+
+If you're into bower:
+
+    bower install danielearwicker/knockout.clear
 
 Note that this library assumes `ko` is a global so it can extend it. If there's a more flexible way to arrange it, I'm open to suggestions.
 
