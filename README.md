@@ -74,7 +74,7 @@ This is typically in situations where you're building a reusable fragment of a m
 
 To control when the `evaluatorFunction` should be actively re-executing, you must supply a `pureComputed` as the first argument (an `Error` is thrown otherwise).
 
-The `evaluatorFunction` should return `void`, and must not depend on the `pureComputed` that you supplied as the first argument (an `Error` is thrown otherwise).
+The `evaluatorFunction` should return `void`, and must not depend on the `pureComputed` that you supplied as the first argument (ideally an error would be thrown if this condition is violated but there doesn't appear to be a way to do that currently).
 
     ko.execute(lastName, function() {
         console.log("Phone number is: " + phoneNumber());
