@@ -64,9 +64,10 @@ For more advanced situations, you might need the API.
 
 ### `ko.execute`
 
-    execute(pureComputed: KnockoutComputed<any>,
-            evaluatorFunction: () => void,
-            thisObj?: any): KnockoutExecuteExtendable;
+    execute<T>(
+        pureComputed: KnockoutComputed<any>,
+        evaluatorFunction: () => T,
+        thisObj?: any): KnockoutComputed<T>;
 
 `ko.execute` is used as an alternative to the `execute` binding described above, in situations where you can't (or don't want to) simply modify the HTML bindings.
 
@@ -74,13 +75,13 @@ This is typically in situations where you're building a reusable fragment of a m
 
 To control when the `evaluatorFunction` should be actively re-executing, you must supply a `pureComputed` as the first argument (an `Error` is thrown otherwise).
 
-The `evaluatorFunction` should return `void`, and must not depend on the `pureComputed` that you supplied as the first argument (ideally an error would be thrown if this condition is violated but there doesn't appear to be a way to do that currently).
+The `evaluatorFunction` typically returns `void`, though it doesn't have to. It must not depend on the `pureComputed` that you supplied as the first argument (ideally an error would be thrown if this condition is violated but there doesn't appear to be a way to do that currently).
 
     ko.execute(lastName, function() {
         console.log("Phone number is: " + phoneNumber());
     });
 
-The returned object only has an `extend` function, so you can apply extenders it. Otherwise, you don't need to keep a reference to it and you don't need to manually dispose it.
+The returned object is a `pureComputed`, on which you can call the `extend` function if necessary. Otherwise, you don't need to keep a reference to it and you don't need to manually dispose it.
 
 ---
 

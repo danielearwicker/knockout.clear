@@ -1,20 +1,14 @@
 ///<reference path="../knockout/knockout.d.ts" />
 
-interface KnockoutExecuteExtendable {
-    extend(requestedExtenders: { [key: string]: any; }): KnockoutExecuteExtendable;
-}
-
 interface KnockoutExecuteThenable<T> {
     then(done: (result: T) => void): any;
 }
 
 interface KnockoutStatic {
-    isPureComputed(obs: any): boolean;
-
-    execute(
+    execute<T>(
         pureComputed: KnockoutComputed<any>,
-        evaluatorFunction: () => void,
-        thisObj?: any): KnockoutExecuteExtendable;
+        evaluatorFunction: () => T,
+        thisObj?: any): KnockoutComputed<T>;
 
     unpromise<T>(
         evaluatorFunction: () => T | KnockoutExecuteThenable<T>,
@@ -23,4 +17,6 @@ interface KnockoutStatic {
             errorValue?: T;
             thisArg?: any;
         }): KnockoutComputed<T>;
+
+    isPureComputed(obs: any): boolean;
 }
