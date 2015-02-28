@@ -30,6 +30,12 @@ describe("Clear extensions", function() {
 
         sub.dispose();
         expect(counter).toEqual(2);
+        expect(x.getSubscriptionsCount()).toEqual(0);
+
+        // Awaken: doesn't execute, but does subscribe
+        sub = px.subscribe(nothing);
+        expect(counter).toEqual(2);
+        expect(x.getSubscriptionsCount()).toEqual(2);   // from both computeds
     });
 
     it("Should cope with pureComputed initially awake in ko.execute", function() {
