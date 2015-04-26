@@ -1,6 +1,6 @@
 {
     "name": "knockout.clear",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Minimal utilities to make it easy to get KnockoutJS to clear up garbage automatically",
     "main": "lib/knockout.clear.js",
     "dependencies": {},
