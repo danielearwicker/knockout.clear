@@ -25,7 +25,7 @@ if (process.argv.length > 2 && process.argv[2] == '--source') {
     };
     require('../build/fragments/source-references');
 } else {
-    global.ko = require('../build/output/knockout-latest.js');
+    global.ko = require('knockout');
 }
 
 require('../build/output/knockout.clear.js');
