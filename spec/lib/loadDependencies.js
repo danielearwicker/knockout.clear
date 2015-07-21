@@ -41,6 +41,6 @@
         }
     }
 
-    jasmine.addScriptReference("../build/output/knockout-latest.js");
+    jasmine.addScriptReference("../node_modules/knockout/build/output/knockout-latest.js");
     jasmine.addScriptReference("../build/output/knockout.clear.js");
 })();
