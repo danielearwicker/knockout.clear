@@ -23,8 +23,6 @@ module.exports = function(grunt) {
             grunt.file.mkdir('build/output');
             grunt.file.copy('lib/knockout.clear.js',
                             'build/output/knockout.clear.js');
-            grunt.file.copy('bower_components/knockout/dist/knockout.js',
-                            'build/output/knockout-latest.js');
         }
         return !this.errorCount;
     });
