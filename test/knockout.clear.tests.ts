@@ -1,4 +1,5 @@
-///<reference path="knockout.clear.d.ts" />
+///<reference path="../lib/knockout.clear.d.ts" />
+///<reference path="../node_modules/@types/knockout/index.d.ts" />
 
 // Typically ko.execute uses a void evaluator
 var pcv = ko.pureComputed(() => {});

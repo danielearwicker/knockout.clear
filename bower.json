@@ -1,6 +1,6 @@
 {
   "name": "knockout-clear",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/danielearwicker/knockout-clear",
   "authors": [
     "Daniel Earwicker <dan@earwicker.com>"
@@ -21,6 +21,6 @@
     "spec"
   ],
   "dependencies": {
-    "knockout": "~3.3.0"
+    "knockout": "^3.3.0"
   }
 }

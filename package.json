@@ -5,20 +5,22 @@
     "main": "lib/knockout.clear.js",
     "dependencies": {},
     "devDependencies": {
-        "grunt": "^0.4.5"
+        "grunt": "^0.4.5",
+        "@types/knockout": "^3.4.0"
     },
     "scripts": {
         "prepublish": "bower install && grunt",
         "test": "node spec/runner.node.js"
     },
     "repository": {
-    "type": "git",
-    "url": "http://github.com/danielearwicker/knockout.clear.git"
+        "type": "git",
+        "url": "http://github.com/danielearwicker/knockout.clear.git"
     },
     "author": "Daniel Earwicker <dan@earwicker.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/danielearwicker/knockout.clear/issues"
     },
-    "homepage": "https://github.com/danielearwicker/knockout.clear"
+    "homepage": "https://github.com/danielearwicker/knockout.clear",
+    "types": "./lib/knockout.clear.d.ts"
 }
