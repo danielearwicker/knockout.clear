@@ -21,6 +21,6 @@
     "spec"
   ],
   "dependencies": {
-    "knockout": "^3.3.0"
+    "knockout": "^3.4.0"
   }
 }
