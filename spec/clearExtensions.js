@@ -249,4 +249,173 @@ describe("Clear extensions", function() {
             expect(v.peek()).toEqual("badness");
         });
     });
+    var mockThenableWithCancel = function(timeout, val, err) {
+        var timer = null;
+        var _cancel = null;
+        return {
+            then: function(resolve, reject) {
+                timer = setTimeout(function() {
+                    timer =_cancel = null;
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(val);
+                    }
+                }, timeout);
+                _cancel = function(){
+                    console.log('cancelling');
+                    clearTimeout(timer);
+                    timer = _cancel = null;// you can no longer cancel after this
+                    setTimeout(function() {reject(new Error('AbortError'));}, 1);
+                }
+            },
+            cancel: function() {
+                // instantly triggers an async rejection
+                if (_cancel)
+                    _cancel();
+            }
+        };
+    }
+
+    it("Should be able to cancel thenables", function() {
+
+        var message = ko.observable("hi"),
+            error = ko.observable();
+
+        var v = ko.unpromise(function() {
+            return mockThenableWithCancel(50, message(), error());
+        });
+        waits(100);
+
+        var sub;
+        runs(function() {
+            // Nothing is observing v yet so it is asleep and has initialValue
+            expect(v.peek()).toEqual(void 0);
+            // wake it up
+            sub = v.subscribe(nothing);
+            // Answer will not be immediate
+            expect(v.peek()).toEqual(void 0);
+        });
+
+        waits(100);
+
+        runs(function() {
+            expect(v.peek()).toEqual("hi");
+            message("check");
+            expect(v.peek()).toEqual("hi");
+            message("bye"); // subsequent changes should cancel the previous operation
+            expect(v.peek()).toEqual("hi");
+        });
+
+        waits(100);
+
+        runs(function() {
+            expect(v.peek()).toEqual("bye");
+            error(new Error("blah"));
+            message("bye"); // subsequent changes should cancel the previous operation
+            expect(v.peek()).toEqual("bye");
+        });
+
+        waits(100);
+
+        runs(function() {
+            // should revert to error value
+            expect(v.peek()).toEqual(void 0);
+            // go to sleep
+            sub.dispose();
+            message("hi again");
+        });
+
+        waits(100);
+
+        runs(function() {
+            // expect no change because no longer awake
+            expect(v.peek()).toEqual(void 0);
+        });
+    });
+
+    
+    var mockThenableWithAbort = function(timeout, val, err) {
+        var timer = null;
+        var _cancel = null;
+        return {
+            then: function(resolve, reject) {
+                timer = setTimeout(function() {
+                    timer =_cancel = null;
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(val);
+                    }
+                }, timeout);
+                _cancel = function(){
+                    console.log('aborting');
+                    clearTimeout(timer);
+                    timer = _cancel = null;// you can no longer cancel after this
+                    setTimeout(function() {reject(new Error('AbortError'));}, 1);
+                }
+            },
+            abort: function() {
+                // instantly triggers an async rejection
+                if (_cancel)
+                    _cancel();
+            }
+        };
+    }
+    it("Should be able to abort thenables", function() {
+
+        var message = ko.observable("hi"),
+            error = ko.observable();
+
+        var v = ko.unpromise(function() {
+            return mockThenableWithAbort(50, message(), error());
+        });
+        waits(100);
+
+        var sub;
+        runs(function() {
+            // Nothing is observing v yet so it is asleep and has initialValue
+            expect(v.peek()).toEqual(void 0);
+            // wake it up
+            sub = v.subscribe(nothing);
+            // Answer will not be immediate
+            expect(v.peek()).toEqual(void 0);
+        });
+
+        waits(100);
+
+        runs(function() {
+            expect(v.peek()).toEqual("hi");
+            message("check");
+            expect(v.peek()).toEqual("hi");
+            message("bye"); // subsequent changes should cancel the previous operation
+            expect(v.peek()).toEqual("hi");
+        });
+
+        waits(100);
+
+        runs(function() {
+            expect(v.peek()).toEqual("bye");
+            error(new Error("blah"));
+            message("bye"); // subsequent changes should cancel the previous operation
+            expect(v.peek()).toEqual("bye");
+        });
+
+        waits(100);
+
+        runs(function() {
+            // should revert to error value
+            expect(v.peek()).toEqual(void 0);
+            // go to sleep
+            sub.dispose();
+            message("hi again");
+        });
+
+        waits(100);
+
+        runs(function() {
+            // expect no change because no longer awake
+            expect(v.peek()).toEqual(void 0);
+        });
+    });
 });
